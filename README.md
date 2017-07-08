@@ -1,2 +1,2 @@
 # AOJ-ICPC
-  http://aoj-icpc.ichyo.jpのやつ
+  http://aoj-icpc.ichyo.jp のやつ
