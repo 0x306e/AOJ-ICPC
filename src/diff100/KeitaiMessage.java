@@ -71,7 +71,7 @@ public class KeitaiMessage {
         break;
 
       default:
-        System.out.println("there is exist a bug");
+        System.out.println("there is a bug");
       }
       break;
 
@@ -108,7 +108,7 @@ public class KeitaiMessage {
       break;
 
     default:
-      System.out.println("there is exist a bug");
+      System.out.println("there is a bug");
     }
   }
 
