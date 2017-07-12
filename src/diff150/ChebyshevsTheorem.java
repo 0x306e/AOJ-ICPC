@@ -16,8 +16,13 @@ public class ChebyshevsTheorem {
     int data = sc.nextInt();
 
     while (data != 0) {
-      System.out.println(cntPrimeNumber(data));
-      data = sc.nextInt();
+      if (data != 1) {
+        System.out.println(cntPrimeNumber(data));
+        data = sc.nextInt();
+      } else {
+        System.out.println(1);
+        data = sc.nextInt();
+      }
     }
 
     sc.close();
@@ -25,8 +30,11 @@ public class ChebyshevsTheorem {
 
   public static int cntPrimeNumber(int n) {
     int cnt = 0;
+    if (isPrimeNumber(n)) {
+      cnt--;
+    }
 
-    for (int i = n + 1; i < n * 2; i++) {
+    for (int i = n; i < n * 2; i++) {
       if (isPrimeNumber(i)) {
         cnt++;
       }
@@ -36,11 +44,16 @@ public class ChebyshevsTheorem {
   }
 
   public static boolean isPrimeNumber(int n) {
-    if ((n % 2) == 0) {
+    if (n < 2) {
+      return false;
+    } else if (n == 2) {
+      return true;
+    } else if ((n % 2) == 0) {
       return false;
     }
 
-    for (int i = 3; i < n; i += 2) {
+    double sqrtNum = Math.sqrt(n);
+    for (int i = 3; i <= sqrtNum; i += 2) {
       if ((n % i) == 0) {
         return false;
       }
