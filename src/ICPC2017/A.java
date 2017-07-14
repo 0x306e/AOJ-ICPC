@@ -94,7 +94,7 @@ int main(){
     }
 
     //cout << max << endl;
-    if (max == 0)cout << "NONE";
+    if (max == 0)cout << "NONE" << endl;
     else cout << max << endl;
   
   }
