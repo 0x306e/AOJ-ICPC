@@ -75,7 +75,7 @@ int main(){
     cin >> n >> m;
     if (n == 0)break;
     for (int i = 0; i < n; ++i) {
-        a[i];
+        cin >> a[i];
     }
 
     for (int i = 0; i < n;++i) {
