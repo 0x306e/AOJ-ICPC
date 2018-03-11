@@ -13,12 +13,12 @@ void dfs(int x, int y){
         return;
     }
     c[x][y] = '0';
-    dfs(x+2, y);
-    dfs(x+2, y+2);
-    dfs(x+2, y-2);
-    dfs(x-2, y);
-    dfs(x-2, y+2);
-    dfs(x-2, y-2);
+    dfs(x+1, y);
+    dfs(x+1, y+2);
+    dfs(x+1, y-2);
+    dfs(x-1, y);
+    dfs(x-1, y+2);
+    dfs(x-1, y-2);
     dfs(x, y+2);
     dfs(x, y-2);
     return;
@@ -26,15 +26,15 @@ void dfs(int x, int y){
 
 int main(){
     int W, H, cnt = 0;
-    cin >> W >> H;
-    while(W != 0 && H != 0){
+    scanf("%d %d\n", &W, &H);
+    while(W != 0 || H != 0){
         mx = H;
-        my = W;
-        for(int i = 0; i < H; i++){
-            scanf("%s\n", c[i]);
+        my = 2 * W;
+        for(int k = 0; k < H; k++){
+            cin.getline(c[k], sizeof(c[k]));
         }
         for(int i = 0; i < H; i++){
-            for(int j = 0; j < W; j++){
+            for(int j = 0; j < 2 * W; j++){
                 if(c[i][j] == '1'){
                     cnt++;
                     dfs(i, j);
@@ -42,7 +42,7 @@ int main(){
             }
         }
         cout << cnt << endl;
-        cin >> W >> H;
+        scanf("%d %d\n", &W, &H);
         cnt = 0;
     }
 }
