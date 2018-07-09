@@ -1,5 +1,6 @@
 package diff150;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -10,60 +11,75 @@ import java.util.Scanner;
  *
  */
 public class RedAndBlack {
-  static int cnt = 0;
-  static int sx, sy;
-  static int[][] map = new int[20][20];
-  static char[][] ch = new char[20][20];
+  static int cnt;
+  static int w, h;
+  static int[][] map = new int[21][21];
 
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    int w = sc.nextInt();
-    int h = sc.nextInt();
-    sc.nextLine();
+    char[][] ch = new char[21][21];
+    int sx = 0, sy = 0;
 
-    for (int i = 0; i < h; i++) {
-      String str = sc.nextLine();
-      ch[i] = str.toCharArray();
+    while (true) {
+    for (int i = 0; i < map.length; i++) {
+      Arrays.fill(map[i], 1);
+    }
+      cnt = 0;
+      w = sc.nextInt();
+      h = sc.nextInt();
+      sc.nextLine();
 
-      for (int j = 0; j < w; j++) {
-        map[i][j] = parse(ch[i][j]);
-        if (parse(ch[i][j]) == 2) {
-          sx = i;
-          sy = j;
+      if (w == 0) {
+        break;
+      }
+      for (int i = 0; i < h; i++) {
+        String str = sc.nextLine();
+        ch[i] = str.toCharArray();
+
+        for (int j = 0; j < w; j++) {
+          map[i][j] = parse(ch[i][j]);
+          if (parse(ch[i][j]) == 2) {
+            sx = i;
+            sy = j;
+          }
         }
       }
-    }
 
-    dfs(sy, sx);
-    System.out.println(cnt);
-    sc.close();
+      show(21, 21);
+
+      dfs(sx, sy);
+      System.out.println(cnt);
+      
+      show(21, 21);
+    }
 
   }
 
-  public static void dfs(int y, int x) {
-    if (x < 0 || y < 0 || x > 20 || y > 20 || map[x][y] != 0) {
+  public static void dfs(int x, int y) {
+    show(10, 10);
+    if (x < 0 || y < 0 || x > w + 1 || y > h + 1 || map[x][y] == 1) {
       return;
     }
 
     map[x][y] = 1;
     cnt++;
-    dfs(y, x + 1);
-    dfs(y, x - 1);
-    dfs(y + 1, x);
-    dfs(y - 1, x);
-
+    dfs(x, y + 1);
+    dfs(x, y - 1);
+    dfs(x + 1, y);
+    dfs(x - 1, y);
+    return;
   }
 
-  public static void show(int maxX, int maxY) {
+  public static void show(int maxX, int maxY) { //map[][]の中身を表示するやつ
     for (int i = 0; i < maxY; i++) {
       for (int j = 0; j < maxY; j++) {
-        System.out.print(ch[i][j]);
+        System.out.print(map[i][j]);
       }
-      System.out.println();
+      System.out.println(".");
     }
   }
 
-  public static int parse(char ch) {
+  public static int parse(char ch) { //0, 1, 2 に変換するやつ
     if (ch == '.') {
       return 0;
     } else if (ch == '#') {
